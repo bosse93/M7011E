@@ -1,7 +1,7 @@
 # Light Control
 
 Light control project is building a website for controlling your lamps at home.
-You connect your power supplys to a homeunit. This homeunit will then communicate with our server
+You connect your power supplies to a home unit. This home unit will then communicate with our server
 and you will be able to control your lamps wherever you are through the website. You will also
 be able to see your energy consumption in realtime. 
 
