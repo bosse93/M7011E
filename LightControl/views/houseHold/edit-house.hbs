@@ -1,0 +1,118 @@
+{{# if needHouse}}
+    <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+        <h2>There is no household.</h2>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+            <a href="/house/add-house" type="button" class="btn btn-success">Add a household</a>
+        </div>
+    </div>
+    <!--  there is a house, prints all its items  -->
+{{ else }}
+    {{#if house}}
+        {{#each roomArr}}
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+                <h2>{{this.0.location}}</h2>
+                    {{#each this}}
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+                                    <strong>Name:</strong> {{ this.name }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+                                    <strong>Power:</strong>  <span class="badge">{{ this.power }}W</span>
+                                </div>
+                             </div>
+                        </li>
+                    {{/each}}
+                </div>
+            </div>
+        {{/each}}
+        <hr>
+    {{else}}
+        wtf, we got lost?
+    {{/if}}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+            <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#addRoom">Add room</button>
+            <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#addItem">Add lamp</button>
+        </div>
+    </div>
+    <div class="modal fade" id="addRoom" role="dialog">
+        <div class="modal-dialog">
+            
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Add a room to your house</h3>
+                </div>
+                
+                <div class="modal-body">
+                    <form action="/house/add-room" method="post" id="addRoomForm">
+                        <div class="form-group">
+                            <label for="Location">Room name:</label>
+                            <input type="text" id="location" name="location" class="form-control">
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" form="addRoomForm">Save</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        
+        </div>
+    </div>
+    
+    <div class="modal fade" id="addItem" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Add a lamp to your house</h3>
+                </div>
+                
+                <div class="modal-body">
+                    <form action="/house/add-item" method="post" id="addLampForm">
+                        <div class="form-group">
+                            <label for="name">Lamp name:</label>
+                            <input type="text" id="name" name="name" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Lamp decription:</label>
+                            <input for="text" id="description" name="description" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Location:</label>
+                            <select class="form-control" name="location" id="location">
+                                {{#each house.locations}}
+                                    <option value={{this}}>{{this}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="power">Power usage:</label>
+                            <input for="number" id="power" name="power" class="form-control">
+                        </div>
+                    </form>
+                </div>
+            
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" form="addLampForm">Save</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        
+        </div>
+    
+    </div>
+    
+
+</div>
+
+{{/if}}

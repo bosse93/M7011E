@@ -3,6 +3,8 @@ var router = express.Router();
 var csrf = require('csurf');
 var passport = require('passport');
 
+var houseHold = require('../models/houseHold');
+
 var csrfProtection = csrf();
 router.use(csrfProtection);
 
@@ -45,8 +47,6 @@ router.post('/signin', passport.authenticate('local.signin', {
 
 
 
-
-
 module.exports = router;
 
 function isLoggedIn(req, res, next) {
@@ -62,3 +62,4 @@ function notLoggedIn(req, res, next) {
   }
   res.redirect('/');
 }
+

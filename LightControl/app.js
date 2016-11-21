@@ -13,8 +13,10 @@ var validator = require('express-validator');
 var connectMongo = require('connect-mongo')(session);
 
 
+//routes
 var index = require('./routes/index');
 var user = require('./routes/user');
+var house = require('./routes/house');
 
 var app = express();
 
@@ -48,9 +50,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(function (req, res, next) {
   res.locals.login = req.isAuthenticated(); // used to check in hbs if user is logged in - boolean
   res.locals.session = req.session;
+  req.session.test = 'test';
   next();
 });
 
+app.use('/house', house);
 app.use('/user', user);
 app.use('/', index);
 

@@ -1,25 +1,36 @@
-module.exports = function houseHold(oldHouse){
-    this.items = houseHold.items || {};
-    this.totalQty = houseHold.totalQty || 0;
-    this.totalPower = houseHold.totalPower || 0;
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
+var schema = new Schema({
+    name: {type: String, required: true},
+    owner: {type: Object, required: true},
+    items: {type: Array, required: false},
+    locations: {type: Array, required: false}
+});
 
-    this.add = function(item, id) {
-        var storedItem = this.items[id];
-        if(!storedItem) {
-            storedItem = this.items[id] = {item: item, qty: 0, power: 0};
+schema.methods.addItem = function (House, Item) {
+    this.items.push(Item);
+    House.update({$set: {'items':House.items}}, function (err, res) {
+        if (err) {
+            console.log('there was an error in updating house with item');
+            console.log(err);
+            return;
         }
-        storedItem.qty++;
-        storedItem.power = storedItem.item.power * storedItem.qty;
-        this.totalQty++;
-        this.totalPower += storedItem.item.power;
-    };
+        console.log('House was successfully updated with a new item');
+    });
+}
 
-    this.generateArray = function() {
-        var arr = [];
-        for (var id in this.items) {
-            arr.push(this.items[id]);
+schema.methods.addLoc = function (house, location) {
+    this.locations.push(location);
+    house.update({$set: {'locations':house.locations}}, function (err, res){
+        if (err) {
+            return console.log('Failed to update location');
         }
-        return arr;
-    };
-};
+        console.log("succes in addLoc");
+    });
+}
+
+
+module.exports = mongoose.model('HouseHold', schema);
+
+

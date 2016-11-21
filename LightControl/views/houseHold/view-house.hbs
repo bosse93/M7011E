@@ -1,0 +1,42 @@
+
+{{# if needHouse}}
+    <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+        <h2>There is no household.</h2>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+            <a href="/house/add-house" type="button" class="btn btn-success">Add a household</a>
+        </div>
+    </div>
+    <!--  there is a house, prints all its items  -->
+{{ else }}
+    {{#if house.items}}
+        {{#each roomArr}}
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+                    <h2>{{this.0.location}}</h2>
+                    {{#each this}}
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+                                    <strong>Name:</strong> {{ this.name }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+                                    <strong>Power:</strong>  <span class="badge">{{ this.power }}W</span>
+                                </div>
+                            </div>
+                        </li>
+                    {{/each}}
+                </div>
+            </div>
+        {{/each}}
+    {{ else }}
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+            <h2>Your house is empty, consider adding something.</h2>
+        </div>
+    </div>
+    {{/if}}<!--  end noHouse -->
+{{/if}}
