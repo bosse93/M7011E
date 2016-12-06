@@ -1,36 +1,34 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var schema = new Schema({
+var HouseHoldSchema = new Schema({
     name: {type: String, required: true},
-    owner: {type: Object, required: true},
-    items: {type: Array, required: false},
-    locations: {type: Array, required: false}
+    owner: {type: String, required: true},
+    locations: [{type: Schema.Types.ObjectId, ref: 'Location', required: false}]
 });
 
-schema.methods.addItem = function (House, Item) {
-    this.items.push(Item);
-    House.update({$set: {'items':House.items}}, function (err, res) {
-        if (err) {
-            console.log('there was an error in updating house with item');
-            console.log(err);
-            return;
-        }
-        console.log('House was successfully updated with a new item');
-    });
-}
 
-schema.methods.addLoc = function (house, location) {
-    this.locations.push(location);
-    house.update({$set: {'locations':house.locations}}, function (err, res){
-        if (err) {
-            return console.log('Failed to update location');
-        }
-        console.log("succes in addLoc");
-    });
-}
+var LocationSchema = new Schema({
+    name: {type: String, required: true},
+    house: {type: Schema.Types.ObjectId, ref: 'HouseHold', required: true},
+    items: [{type: Schema.Types.ObjectId, ref: 'Item', required: false}]
+});
+
+var ItemSchema = new Schema({
+    name: {type: String, required: true},
+    power: {type: Number, required: true},
+    location: {type: Schema.Types.ObjectId, ref: 'Location', required: true},
+    description: {type: String, required: false},
+});
 
 
-module.exports = mongoose.model('HouseHold', schema);
 
+
+
+var House = mongoose.model('HouseHold', HouseHoldSchema);
+var Location = mongoose.model('Location', LocationSchema);
+var Item = mongoose.model('Item', ItemSchema);
+var Models = {House: House, Location: Location, Item: Item};
+
+module.exports = Models;
 

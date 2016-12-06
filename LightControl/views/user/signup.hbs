@@ -1,24 +1,50 @@
-<div class="row">
-    <div class="col-md-4 col-md-offset-4">
-        <h1>Sign Up</h1>
-        {{#if hasErrors}}
-            <div class="alert alert-danger">
-                {{# each messages }}
-                    <p>{{this}}</p>
-                {{/each}}
-            </div>
-        {{/if}}
-        <form action="/user/signup" method="post">
+<script>
+    $("#errorDiv").hide();
+    
+    function signUpFunction(email, password) {
+        $.ajax({
+            method: 'POST',
+            url: '/auth/signup',
+            dataType: 'json',
+            data: {email: email, password: password},
+            success: function(response) {
+                localStorage.setItem("APItoken", ("JWT " + response));
+                window.location.href = "/profile";
+            },
+            error: function(response) {
+                $("#errorDiv").empty();
+                $("#errorDiv").append(response.responseJSON.message);
+                $("#errorDiv").show();
+            }
+        });
+    }
+</script>
+
+
+<div class="container">
+
+    <div class="col-sm-6 col-sm-offset-3">
+
+        <h1><span class="fa fa-sign-in"></span> Signup</h1>
+
+        <!-- show any messages that come back with authentication -->
+        <div id="errorDiv" class="alert alert-danger text-center"></div>
+
+        <!-- LOGIN FORM -->
+        <form id="signUpForm" onSubmit="signUpFunction($('#email').val(), $('#password').val());return false;">
             <div class="form-group">
-                <label for="email">E-Mail</label>
-                <input type="text" id="email" name="email" class="form-control">
+                <label for="Email">Email</label>
+                <input type="email" class="form-control" id="email" name="email">
             </div>
             <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" class="form-control">
+                <label for="Password">Password</label>
+                <input type="password" class="form-control" id="password" name="password">
             </div>
-            <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-            <button type="submit" class="btn btn-primary">Sign Up</button>
         </form>
+        <button type="submit" class="btn btn-warning btn-lg" form="signUpForm">Signup</button>
+
+        <hr>
+
+        <p>Already have an account? <a href="/auth">Login</a></p>
     </div>
 </div>

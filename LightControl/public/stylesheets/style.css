@@ -72,3 +72,19 @@ pre {
   height: 60px;
   margin-top: 50px;
 }
+
+/** HOVER BUTTONS I EDIT HOUSE **/
+.hover-btn {
+    position: absolute;
+    right: 15px;
+    display: none;
+}
+.panel-body:hover .hover-btn {
+    display: block;
+}
+
+/** DEFAULT HIDE ALERT BOX **/
+#errorDiv
+{
+    display: none;
+}

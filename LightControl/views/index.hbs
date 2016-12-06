@@ -1,37 +1,65 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
-</br>
+<script>
+    $("#errorDiv").hide();
+    
+    function loginFunction(email, password) {
+        $.ajax({
+            method: 'POST',
+            url: '/auth/signin',
+            dataType: 'json',
+            data: {email: email, password: password},
+            success: function(response) {
+                localStorage.setItem("APItoken", ("JWT " + response));
+                window.location.href = "/profile";
+            },
+            error: function(response) {
+                $("#errorDiv").empty();
+                $("#errorDiv").append(response.responseJSON.message);
+                $("#errorDiv").show();
+            }
+        });
+    }
+</script>
 
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
-</br>
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
-</br>
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
-</br>
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
-</br>
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
-</br>
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
-</br>
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
-</br>
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
-</br>
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
-</br>
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
-</br>
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
-</br>
+
+
+
+
+<div class="container">
+    <div class="jumbotron text-center">
+        <div class="container">
+            <h1><span class="fa fa-lock"></span> LightControl</h1>
+            <div class="col-sm-6 col-sm-offset-3">
+                <div class="well">
+                    <h2><span class="fa fa-sign-in"></span> Login</h2>
+                    <!-- show any messages that come back with authentication -->
+                    <div id="errorDiv" class="alert alert-danger text-center"></div>
+
+                    <!-- LOGIN FORM -->
+                    <form id="loginForm" onSubmit="loginFunction($('#email').val(), $('#password').val());return false;">
+                        <div class="form-group">
+                            <label for="Email">Email</label>
+                            <input type="email" class="form-control" id="email" name="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="Password">Password</label>
+                            <input type="password" class="form-control" id="password" name="password">
+                        </div>
+                    </form>
+                        <button type="submit" class="btn btn-success btn-lg" form="loginForm">Login</button>
+                </div>
+                <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Local Signup</a>
+                <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</a>
+                <a href="/auth/google" class="btn btn-danger"><span class="fa fa-google-plus"></span> Google</a>
+            </div>
+            <hr>
+        </div>
+
+
+
+
+    </div>
+    <a class="btn btn-info" href="/API"><i class="fa fa-file-code-o"></i> API </a>
+</div>
+
+
+

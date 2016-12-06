@@ -1,23 +1,40 @@
-
-
 <!-- header -->
+<script>
+    $.ajax({
+        method: 'POST',
+        url: '/auth/authenticate',
+        dataType: 'json',
+        success: function(response){
+        },
+        error: function(response){
+            window.location.href = "/auth";
+        },
+        beforeSend: function(xhr){
+            xhr.setRequestHeader('Authorization', window.localStorage.getItem('APItoken'));
+        }
+    });
+
+    function logout() {
+        window.localStorage.removeItem('APItoken');
+        window.location.href = "/auth";
+    }
+</script>
 
 <header role="banner" class="navbar navbar-fixed-top navbar-inverse">
-      <div class="container">
+    <div class="container">
         <div class="navbar-header">
-          <button data-toggle="collapse-side" data-target=".side-collapse" data-target-2=".side-collapse-container" type="button" class="navbar-toggle pull-left"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+            <button data-toggle="collapse-side" data-target=".side-collapse" data-target-2=".side-collapse-container" type="button" class="navbar-toggle pull-left"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
         </div>
         <div class="navbar-inverse side-collapse in">
-          <nav role="navigation" class="navbar-collapse">
-            <ul class="nav navbar-nav">
-              <li><a href="/user/profile">Profile</a></li>
-                <li><a href="/house/view-house">House</a></li>
-                <li><a href="/house/edit-house">Edit House</a></li>
-              <li><a href="/user/logout">logout</a></li>
-                <li><a href="/user/signin">signin</a></li>
-                <li><a href="/user/signup">signup</a></li>
-            </ul>
-          </nav>
+            <nav role="navigation" class="navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/profile">Profile</a></li>
+                    <li><a href="/house">House</a></li>
+                    <li><a href="/editHouse">Edit House</a></li>
+                    <li><a href="#" onclick="logout();">Logout</a></li>
+                    <li><a href="/API">API</a></li>
+                </ul>
+            </nav>
         </div>
-      </div>
-    </header>
+    </div>
+</header>
