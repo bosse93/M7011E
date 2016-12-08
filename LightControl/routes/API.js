@@ -2,7 +2,9 @@ var fs = require('fs');
 var HouseHold = require('../models/houseHold');
 var User = require('../models/user');
 var jwt = require('jsonwebtoken');
-var ExtractJwt = require('passport-jwt').ExtractJwt;
+
+var path = require('path');
+var formidable = require('formidable');
 
 module.exports = function(router, passport) {
 
@@ -17,20 +19,45 @@ module.exports = function(router, passport) {
             });
     });
 
-         
-    /**
-     * GET DATA FROM SERVER REQUIRES TOKEN
-     */
-  
-    
-    /**
-     * USER
-     */
-    
-    
-    /**
-     * HOUSE
-     */
+    router.post('/upload', function(req, res, next){
+        console.log('before auth');
+        passport.authenticate('jwt', {session: false}, function(err, user, info) {
+            console.log('after auth');
+            if (err) {
+                return res.status(500).json({message: "Error with database when authenticating token."})
+            } else if (!user) {
+                return res.status(401).json(info);
+            } else {
+                // create an incoming form object
+                var form = new formidable.IncomingForm();
+
+                // specify that we want to allow the user to upload multiple files in a single request
+                form.multiples = true;
+
+                // store all uploads in the /uploads directory
+                form.uploadDir = path.join(__dirname, '/uploads');
+
+                // every time a file has been uploaded successfully,
+                // rename it to it's orignal name
+                form.on('file', function (field, file) {
+                    fs.rename(file.path, path.join(form.uploadDir, file.name));
+                });
+
+                // log any errors that occur
+                form.on('error', function (err) {
+                    console.log('An error has occured: \n' + err);
+                });
+
+                // once all the files have been uploaded, send a response to the client
+                form.on('end', function () {
+                    res.end('success');
+                });
+
+                // parse the incoming request containing the form data
+                form.parse(req);
+            }
+        })(req, res, next);
+    });
     
     router.post('/addHouse', function(req, res, next) {
         passport.authenticate('jwt', {session: false}, function(err, user, info) {

@@ -1,7 +1,4 @@
 
-var User = require('../models/user').User;
-var Token = require('../models/user').Token;
-
 module.exports = function(router, passport){
     /**
      * THIS IS THE STANDARD PATH FOR PAGE RENDERING
@@ -10,6 +7,11 @@ module.exports = function(router, passport){
     router.get('/signup', function(req, res) {
         res.render('user/signup.hbs', {title: 'Sign up', layout: 'loginLayout'});
     });
+
+    router.get('/upload', function(req, res) {
+        res.render('upload/upload.hbs', {title: 'upload'});
+    });
+
     
     router.get('/profile', function(req, res){
         res.render('user/profile.hbs', {title: 'Profile'});

@@ -88,3 +88,33 @@ pre {
 {
     display: none;
 }
+
+/** UPLOADER **/
+
+.btn:focus, .upload-btn:focus{
+    outline: 0 !important;
+}
+
+.upload-btn {
+    color: #ffffff;
+    background-color: #F89406;
+    border: none;
+}
+
+.upload-btn:hover,
+.upload-btn:focus,
+.upload-btn:active,
+.upload-btn.active {
+    color: #ffffff;
+    background-color: #FA8900;
+    border: none;
+}
+
+.glyphicon-cloud-upload {
+    font-size: 5em;
+    color: #9CA3A9;
+}
+
+#upload-input {
+    display: none;
+}

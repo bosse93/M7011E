@@ -9,6 +9,8 @@
         }
         $('#accordion').on('hidden.bs.collapse', toggleChevron);
         $('#accordion').on('shown.bs.collapse', toggleChevron);
+        $('#accordion2').on('hidden.bs.collapse', toggleChevron);
+        $('#accordion2').on('shown.bs.collapse', toggleChevron);
     });
     
     function goBack() {
@@ -19,119 +21,15 @@
 
 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
     <div class="page-header">
+       <h1>API documentation for LightControl</h1>
+    </div>
+    <div class="page-header">
         <a class="btn btn-info" onClick="goBack()"><i class="fa fa-arrow-circle-left"></i> Back </a> <br>
-        <h1>API documentation for LightControl</h1>
+        <h1>API calls</h1>
     </div>
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-        <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingOne">
-                <h4 class="panel-title">
-                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                            My House
-                        <i class="fa fa-plus-circle pull-right"></i>
-                    </a>
-                </h4>
-            </div>
-            <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                <div class="panel-body">
-                    <table class="table table-striped">
-                        <tr>
-                            <th valign="top"> Title </th>
-                            <td>
-                                <b>Get your own house from the database </b>
-                                <p>
-                                    <i>
-                                        <ul>
-                                            <li> Your Jason Web Token will be used to find your house. </li>
-                                        </ul>
-                                    </i>
-                                </p>
-                            </td>
-                        </tr>
 
-                        <tr>
-                            <th valign="top">
-                                URL
-                            </th>
-                            <td>
-                                <b><code>/api/myhouse</code> </b>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th valign="top">
-                                Method
-                            </th>
-                            <td>
-                                <b><code>GET</code></b>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th valign="top">
-                                Success Response
-                            </th>
-                            <td>
-                                <b>Code:</b> 200 <br>
-                                <b>Content:</b><br> <code> { <br>
-                                "_id": MongoDB-Object-ID, <br>
-                                "name": String, <br>
-                                "owner": String, <br>
-                                "__v": Number, <br>
-                                "locations": Array, <br>
-                                "items": Array <br>
-                                }</code><br>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th valign="top">
-                                Error Response
-                            </th>
-                            <td>
-                                <b>Code:</b> 404 NOT FOUND <br>
-                                <b>Content:</b> <code> { Message : "Can\' find what you are looking for."}</code><br>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th valign="top">
-                                Sample Call
-                            </th>
-                            <td>
-                        <pre>
-$.ajax({
-method: 'GET',
-url: '/API/myHouse',
-dataType: 'json',
-success: function(response) {
-    //do stuff
-
-},
-error: function(response) {
-    //do stuff
-},
-beforeSend: function(xhr) {
-    //we use JWT stored in localStorage for authentication.
-    xhr.setRequestHeader('Authorization', window.localStorage.getItem('APItoken'));
-}
-});
-                        </pre>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th valign="top">
-                                Notes
-                            </th>
-                            <td>
-                                <span class="caption">This is where all uncertainties, commentary, discussion etc. can go. I recommend timestamping and identifying oneself when leaving comments here.</span> <br>
-                            </td>
-                        </tr>
-                    </table></div>
-            </div>
-        </div>
-
+        <!-- API TEMPLATE
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="headingTwo">
                 <h4 class="panel-title">
@@ -143,7 +41,6 @@ beforeSend: function(xhr) {
             </div>
             <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                 <div class="panel-body">
-                    <!-- HERE IS WHERE TABLES GO -->
                     <table class="table table-striped">
                         <tr>
                             <th valign="top"> Title </th>
@@ -303,7 +200,7 @@ console.log(r);
                     </div>
             </div>
         </div>
-
+        -->
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="headingThree">
                 <h4 class="panel-title">
@@ -323,7 +220,7 @@ console.log(r);
                                 <p>
                                     <i>
                                         <ul>
-                                            <li> Possible to sign up using local, Facebook & Google strategies. </li>
+                                            <li> Sign up using our local strategy. </li>
                                         </ul>
                                     </i>
                                 </p>
@@ -335,16 +232,7 @@ console.log(r);
                                 URL
                             </th>
                             <td>
-                                <b><code>/auth/signup</code> or <code>/auth/facebook</code> or <code>/auth/google</code> </b>
-                                <p>
-                                    <i>
-                                        <ol>
-                                            <li>Sign up with local strategy</li>
-                                            <li>Sign up with Facebook strategy</li>
-                                            <li>Sign up with Google strategy</li>
-                                        </ol>
-                                    </i>
-                                </p>
+                                <b><code>/auth/signup</code>  </b>
                             </td>
                         </tr>
 
@@ -353,8 +241,7 @@ console.log(r);
                                 Method
                             </th>
                             <td>
-                                <span class="caption">The request type</span> <br>
-                                <i>Facebook & Google</i> <b><code>GET</code></b> | <i>Local</i><b><code>POST</code></b>
+                                <b><code>POST</code></b>
                             </td>
                         </tr>
 
@@ -363,8 +250,7 @@ console.log(r);
                                 Data Params
                             </th>
                             <td>
-                        <span class="caption">Facebook & google strategies requires no payload in the body. <br> Local strategy requires 'email' & 'password'</span> <br>
-                                <b>Example:</b> <br>
+                                <b>Required:</b> <br>
                                 <pre>
 {
 email : [string],
@@ -387,8 +273,7 @@ password : "myS3cr3tP4ssw0rd"
                             </th>
                             <td>
                                 <b>Code:</b> 200 <br>
-                                <b>Action:</b> <code> Will redirect to 'loginRedirect' which stores </code><br>
-                                <b>Content:</b> <code> { id : 12 }</code><br>
+                                <b>Content:</b> <code> [Json Web Token] </code><br>
                             </td>
                         </tr>
 
@@ -397,13 +282,11 @@ password : "myS3cr3tP4ssw0rd"
                                 Error Response
                             </th>
                             <td>
-                                <span class="caption">Most endpoints will have many ways they can fail. From unauthorized access, to wrongful parameters etc. All of those should be listed here. It might seem repetitive, but it helps prevent assumptions from being made where they shouldn&#8217;t be.</span> <br>
-                                <b> Example: </b> <br>
-                                <b>Code:</b> 401 UNAUTHORIZED <br>
-                                <b>Content:</b> <code> { error : "Log in" }</code><br>
-                                OR<br>
-                                <b>Code:</b> 422 Unprocessable Entry <br>
-                                <b>Content:</b> <code> { error : "Email invalid" }</code><br>
+                                <b>Code:</b> 500 Internal Server Error <br>
+                                <b>Content:</b> <code> {message: "message"}</code><br>
+                                <br>
+                                <b>Code:</b> 401 Unauthorized <br>
+                                <b>Content:</b> <code> {message: "message"}</code>
                             </td>
                         </tr>
 
@@ -412,20 +295,275 @@ password : "myS3cr3tP4ssw0rd"
                                 Sample Call
                             </th>
                             <td>
-                                <span class="caption">Just a sample call to your endpoint in a runnable format ($.ajax call or a curl request) &#8211; this makes life easier and more predictable.</span> <br>
                                 <pre>
 $.ajax({
-url: "/users",
-dataType: "json",
-data : {
-u: {
-  id : 12,
-  email : "john@smith.com"
+    method: 'POST',
+    url: '/auth/signup',
+    dataType: 'json',
+    data: {email: email, password: password},
+    success: function(response) {
+        //since this returns our JWT it would be smart to save it.
+        localStorage.setItem("APItoken", ("JWT " + response));
+        //and also redirect somewhere
+        window.location.href = "/profile";
+    },
+    error: function(response) {
+        //errorhandling
+    }
+});
+                        </pre>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Notes
+                            </th>
+                            <td>
+                                <span class="caption">This call of course requires NO JWT.</span> <br>
+                                <span class="caption">Feel free to save the JWT in what ever way you like. <br>
+                                    <em> we suggest using local storage.</em></span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingSignIn">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSignIn" aria-expanded="false" aria-controls="collapseSignIn">
+                        Sign in
+                        <i class="fa fa-plus-circle pull-right"></i>
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseSignIn" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                <div class="panel-body">
+                    <!-- HERE IS WHERE TABLES GO -->
+                    <table class="table table-striped">
+                        <tr>
+                            <th valign="top"> Title </th>
+                            <td>
+                                <span class="caption">Sign in</span> <br>
+                                <p>
+                                    <i>
+                                        <ul>
+                                            <li> Sign in using local strategy. </li>
+                                        </ul>
+                                    </i>
+                                </p>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                URL
+                            </th>
+                            <td>
+                                <b><code>/auth/signin</code>   </b>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Method
+                            </th>
+                            <td>
+                                <b><code>POST</code> </b>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Data Params
+                            </th>
+                            <td>
+                                <b>Required:</b> <br>
+                                <pre>
+{
+email : [string],
+password : [string]
 }
+                        </pre>
+                                <b> Example: </b>
+                                <pre>
+{
+email : "myemail@host.com",
+password : "myS3cr3tP4ssw0rd"
+}
+                        </pre>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Success Response
+                            </th>
+                            <td>
+                                <b>Code:</b> 200 <br>
+                                <b>Content:</b> <code> [Json Web Token] </code><br>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Error Response
+                            </th>
+                            <td>
+                                <b>Code:</b> 500 Internal Server Error <br>
+                                <b>Content:</b> <code> {message: "message"}</code><br>
+                                <br>
+                                <b>Code:</b> 401 Unauthorized <br>
+                                <b>Content:</b> <code> {message: "message"}</code>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Sample Call
+                            </th>
+                            <td>
+                                <pre>
+$.ajax({
+    method: 'POST',
+    url: '/auth/signin',
+    dataType: 'json',
+    data: {email: email, password: password},
+    success: function(response) {
+        //since this returns our JWT it would be smart to save it.
+        localStorage.setItem("APItoken", ("JWT " + response));
+        //and also redirect somewhere
+        window.location.href = "/profile";
+    },
+    error: function(response) {
+        //error handling
+    }
+});
+                        </pre>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Notes
+                            </th>
+                            <td>
+                                <span class="caption">This call of course requires NO JWT.</span> <br>
+                                <span class="caption">Feel free to save the JWT in what ever way you like. <br>
+                                    <em> we suggest using local storage.</em></span>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="page-header">
+        <h1>Secure API calls (requires JWT header)</h1>
+    </div>
+    <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
+
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapseMyHouse" aria-expanded="false" aria-controls="collapseMyHouse">
+                        My House
+                        <i class="fa fa-plus-circle pull-right"></i>
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseMyHouse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <tr>
+                            <th valign="top"> Title </th>
+                            <td>
+                                <b>Get your own house from the database </b>
+                                <p>
+                                    <i>
+                                        <ul>
+                                            <li> Your Jason Web Token will be used to find your house. </li>
+                                        </ul>
+                                    </i>
+                                </p>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                URL
+                            </th>
+                            <td>
+                                <b><code>/api/myhouse</code> </b>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Method
+                            </th>
+                            <td>
+                                <b><code>GET</code></b>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Success Response
+                            </th>
+                            <td>
+                                <b>Code:</b> 200 <br>
+                                <b>Content:</b><br> <code> { <br>
+                                "_id": MongoDB-Object-ID, <br>
+                                "name": String, <br>
+                                "owner": String, <br>
+                                "__v": Number, <br>
+                                "locations": Array, <br>
+                                "items": Array <br>
+                                }</code><br>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Error Response
+                            </th>
+                            <td>
+                                <b>Code:</b> 400 Bad Request <br>
+                                <b>Content:</b> <code> {message: "message"}</code><br>
+                                <br>
+                                <b>Code:</b> 500 Internal Server Error <br>
+                                <b>Content:</b> <code> {message: "message"}</code><br>
+                                <br>
+                                <b>Code:</b> 401 Unauthorized <br>
+                                <b>Content:</b> <code> {message: "message"}</code>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Sample Call
+                            </th>
+                            <td>
+                        <pre>
+$.ajax({
+method: 'GET',
+url: '/API/myHouse',
+dataType: 'json',
+success: function(response) {
+    //do stuff
+
 },
-type : "PUT",
-success : function(r) {
-console.log(r);
+error: function(response) {
+    //do stuff
+},
+beforeSend: function(xhr) {
+    //we use JWT stored in localStorage for authentication.
+    xhr.setRequestHeader('Authorization', window.localStorage.getItem('APItoken'));
 }
 });
                         </pre>
@@ -437,7 +575,114 @@ console.log(r);
                                 Notes
                             </th>
                             <td>
-                                <span class="caption">This is where all uncertainties, commentary, discussion etc. can go. I recommend timestamping and identifying oneself when leaving comments here.</span> <br>
+                                <span class="caption">Remeber that all secure calls requires key "Authorization" in header with value "JWT ...token..."</span> <br>
+                            </td>
+                        </tr>
+                    </table></div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingAuthenticate">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapseAuthenticate" aria-expanded="false" aria-controls="collapseAuthenticate">
+                        Authenticate
+                        <i class="fa fa-plus-circle pull-right"></i>
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseAuthenticate" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <tr>
+                            <th valign="top"> Title </th>
+                            <td>
+                                <b>Authenticate your token. </b>
+                                <p>
+                                    <i>
+                                        <ul>
+                                            <li> Tries to authenticate using your Json Web Token. </li>
+                                        </ul>
+                                    </i>
+                                </p>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                URL
+                            </th>
+                            <td>
+                                <b><code>/auth/authenticate</code> </b>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Method
+                            </th>
+                            <td>
+                                <b><code>POST</code></b>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Success Response
+                            </th>
+                            <td>
+                                <b>Code:</b> 200 <br>
+                                <b>Content:</b><br> <code> { <br>
+                                message: "Success" <br>
+                                }</code><br>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Error Response
+                            </th>
+                            <td>
+                                <b>Code:</b> 500 Internal Server Error <br>
+                                <b>Content:</b> <code> {message: "message"}</code><br>
+                                <br>
+                                <b>Code:</b> 401 Unauthorized <br>
+                                <b>Content:</b> <code> {message: "message"}</code>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Sample Call
+                            </th>
+                            <td>
+                        <pre>
+$.ajax({
+    method: 'POST',
+    url: '/auth/authenticate',
+    dataType: 'json',
+    success: function(response){
+        //all good, do whatever, or nothing.
+    },
+    error: function(response){
+        //user was not authenticated, redirect?
+        window.location.href = "/auth";
+    },
+    beforeSend: function(xhr){
+        //Use JWT stored in localStorage for authentication.
+    xhr.setRequestHeader('Authorization', window.localStorage.getItem('APItoken'));
+    }
+});
+                        </pre>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Notes
+                            </th>
+                            <td>
+                                <span class="caption">Remeber that all secure calls requires key "Authorization" in header with value "JWT ...token..."</span> <br>
                             </td>
                         </tr>
                     </table>
@@ -446,15 +691,15 @@ console.log(r);
         </div>
 
         <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingFour">
+            <div class="panel-heading" role="tab" id="headingAddRoom">
                 <h4 class="panel-title">
-                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapseAddRoom" aria-expanded="false" aria-controls="collapseAddRoom">
                         Add room
                         <i class="fa fa-plus-circle pull-right"></i>
                     </a>
                 </h4>
             </div>
-            <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+            <div id="collapseAddRoom" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingAddRoom">
                 <div class="panel-body">
                     <!-- HERE IS WHERE TABLES GO -->
                     <table class="table table-striped">
@@ -479,8 +724,7 @@ console.log(r);
                                 Method
                             </th>
                             <td>
-                                <span class="caption">The request type</span> <br>
-                                <b><code>POST</code> </b>
+                               <b><code>POST</code> </b>
                             </td>
                         </tr>
 
@@ -489,16 +733,16 @@ console.log(r);
                                 Data Params
                             </th>
                             <td>
-                                <b>Example:</b> <br>
+                                <b>Required:</b> <br>
                                 <pre>
 {
-name : [string]
+newRoomName : [string]
 }
                         </pre>
                                 <b> Example: </b>
                                 <pre>
 {
-name : "kitchen"
+newRoomName : "kitchen"
 }
                         </pre>
                             </td>
@@ -510,14 +754,14 @@ name : "kitchen"
                             </th>
                             <td>
                                 <b>Code:</b> 200 <br>
-                                <b>Content example:</b> <code> {
-                                "_id": "584582a678cd030e58b3bbc4",
-                                "name": "Kitchen",
-                                "house": "584582a678cd030e58b3bbc3",
-                                "items": [
-                                "584582ca78cd030e58b3bbcb"
-                                ],
-                                "__v": 0
+                                <b>Content example:</b> <code> { <br>
+                                "_id": "584582a678cd030e58b3bbc4",<br>
+                                "name": "Kitchen",<br>
+                                "house": "584582a678cd030e58b3bbc3",<br>
+                                "items": [<br>
+                                "584582ca78cd030e58b3bbcb"<br>
+                                ],<br>
+                                "__v": 0<br>
                                 }</code><br>
                             </td>
                         </tr>
@@ -527,13 +771,11 @@ name : "kitchen"
                                 Error Response
                             </th>
                             <td>
-                                <span class="caption">Most endpoints will have many ways they can fail. From unauthorized access, to wrongful parameters etc. All of those should be listed here. It might seem repetitive, but it helps prevent assumptions from being made where they shouldn&#8217;t be.</span> <br>
-                                <b> Example: </b> <br>
-                                <b>Code:</b> 401 UNAUTHORIZED <br>
-                                <b>Content:</b> <code> { error : "Log in" }</code><br>
-                                OR<br>
-                                <b>Code:</b> 422 Unprocessable Entry <br>
-                                <b>Content:</b> <code> { error : "Email invalid" }</code><br>
+                                <b>Code:</b> 500 Internal Server Error <br>
+                                <b>Content:</b> <code> {message: "message"}</code><br>
+                                <br>
+                                <b>Code:</b> 401 Unauthorized <br>
+                                <b>Content:</b> <code> {message: "message"}</code>
                             </td>
                         </tr>
 
@@ -542,7 +784,6 @@ name : "kitchen"
                                 Sample Call
                             </th>
                             <td>
-                                <span class="caption">Just a sample call to your endpoint in a runnable format ($.ajax call or a curl request) &#8211; this makes life easier and more predictable.</span> <br>
                                 <pre>
 $.ajax({
     method: 'POST',
@@ -550,13 +791,14 @@ $.ajax({
     dataType: 'json',
     data: {newRoomName: newRoom},
     success: function(response) {
-                            //stuff
+        //stuff
                             },
     error: function(response) {
-                            //stuff
+        //stuff
     },
     beforeSend: function(xhr) {
-        xhr.setRequestHeader('Authorization', window.localStorage.getItem('APItoken'));
+        //we use JWT stored in localStorage for authentication.
+    xhr.setRequestHeader('Authorization', window.localStorage.getItem('APItoken'));
     }
 });
 }
@@ -570,66 +812,20 @@ $.ajax({
                                 Notes
                             </th>
                             <td>
-                                <span class="caption">This is where all uncertainties, commentary, discussion etc. can go. I recommend timestamping and identifying oneself when leaving comments here.</span> <br>
+                                <span class="caption">Remeber that all secure calls requires key "Authorization" in header with value "JWT ...token...".</span> <br>
+                                <span class="caption"> A new house is created if you have not got one server-side.</span>
                             </td>
                         </tr>
                     </table></div>
             </div>
         </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingFive">
-                <h4 class="panel-title">
-                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                        Collapsible Group Item #1
-                        <i class="fa fa-plus-circle pull-right"></i>
-                    </a>
-                </h4>
-            </div>
-            <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
-                <div class="panel-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingSix">
-                <h4 class="panel-title">
-                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                        Collapsible Group Item #1
-                        <i class="fa fa-plus-circle pull-right"></i>
-                    </a>
-                </h4>
-            </div>
-            <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
-                <div class="panel-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingSeven">
-                <h4 class="panel-title">
-                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-                        Collapsible Group Item #1
-                        <i class="fa fa-plus-circle pull-right"></i>
-                    </a>
-                </h4>
-            </div>
-            <div id="collapseSeven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSeven">
-                <div class="panel-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                </div>
-            </div>
-        </div>
-
+        
     </div>
 </div>
 
 
 
 
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
-
+</div>
