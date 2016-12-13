@@ -118,3 +118,11 @@ pre {
 #upload-input {
     display: none;
 }
+
+/** IMG SIZE **/
+img{
+    width:100%;
+    max-width:600px;
+    height:100%;
+    max-height:400px;
+}

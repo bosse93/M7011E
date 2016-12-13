@@ -19,6 +19,7 @@ var ItemSchema = new Schema({
     power: {type: Number, required: true},
     location: {type: Schema.Types.ObjectId, ref: 'Location', required: true},
     description: {type: String, required: false},
+    powerOn: {type: Boolean, default: false}
 });
 
 

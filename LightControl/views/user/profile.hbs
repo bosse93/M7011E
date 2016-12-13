@@ -1,7 +1,58 @@
-<div class="container">
-    <div class="hej" id="hej" name="hej">
+<script>
+    $.ajax({
+        method: 'GET',
+        url: '/API/MyFiles',
+        dataType: 'json',
+        success: function(response) {
+            $("#errorDiv").hide();
+            var counter = 0;
+            response.forEach(function(element) {
+                console.log(element);
+                if (counter == 0) {
+                    $("#wrapperForSlides").append(
+                            '<div class="item active">'+
+                            '<img src="'+element+'" alt="http://79.136.28.57:8000/images/photoNotFound.jpg">'+
+                            '</div>'
+                    );
+                    $("#carousel-indicators").append(
+                        '<li data-target="#myCarousel" data-slide-to="'+counter+'" class="active"></li>'
+                    );
+                    counter = counter + 1;
+                } else {
+                    $("#wrapperForSlides").append(
+                            '<div class="item">'+
+                            '<img src="'+element+'" alt="http://79.136.28.57:8000/images/photoNotFound.jpg">'+
+                            '</div>'
+                    );
 
-    </div>
+                    $("#carousel-indicators").append(
+                            '<li data-target="#myCarousel" data-slide-to="'+counter+'"></li>'
+                    );
+                    counter = counter + 1;
+                }
+            });
+
+        },
+        error: function(response) {
+            if (response.status == 401) {
+                window.location.href = "/auth";
+            } else {
+                $("#errorDiv").empty();
+                $("#errorDiv").append('<h1>'+response.status +'</h1> <br> ' +
+                        '<h3>'+ response.statusText +'</h3> <br> ' +
+                        response.responseJSON.message + '<br>');
+                $("#errorDiv").show();
+            }
+        },
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader('Authorization', window.localStorage.getItem('APItoken'));
+        }
+    });
+</script>
+
+
+
+<div class="container">
 
     <div class="page-header text-center">
         <h1><span class="fa fa-anchor"></span> Profile Page</h1>
@@ -11,7 +62,7 @@
 
         <!-- LOCAL INFORMATION -->
         <div class="col-sm-6">
-            <div class="well">
+            <div id="test" class="well">
                 <h3><span class="fa fa-user"></span> Profile picture</h3>
 
             </div>
@@ -30,11 +81,32 @@
         <!-- GOOGLE INFORMATION -->
         <div class="col-sm-12">
             <div class="well">
-                <h3 class="text-danger"><span class="fa fa-google-plus"></span> Google+</h3>
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol id="carousel-indicators" class="carousel-indicators">
+                        <!--<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                        <li data-target="#myCarousel" data-slide-to="3"></li>-->
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div id="wrapperForSlides" class="carousel-inner" role="listbox">
+
+                    </div>
+
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
 
             </div>
         </div>
-
     </div>
-
 </div>

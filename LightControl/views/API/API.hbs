@@ -468,6 +468,481 @@ $.ajax({
     <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
 
         <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingAuthenticate">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapseAuthenticate" aria-expanded="false" aria-controls="collapseAuthenticate">
+                        Authenticate
+                        <i class="fa fa-plus-circle pull-right"></i>
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseAuthenticate" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <tr>
+                            <th valign="top"> Title </th>
+                            <td>
+                                <b>Authenticate your token. </b>
+                                <p>
+                                    <i>
+                                        <ul>
+                                            <li> Tries to authenticate using your Json Web Token. </li>
+                                        </ul>
+                                    </i>
+                                </p>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                URL
+                            </th>
+                            <td>
+                                <b><code>/auth/authenticate</code> </b>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Method
+                            </th>
+                            <td>
+                                <b><code>POST</code></b>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Data Params
+                            </th>
+                            <td>
+                                <b>Required:</b> <br>
+                                <pre>
+{
+u : {
+email : [string],
+name : [string],
+current_password : [alphanumeric]
+password : [alphanumeric],
+password_confirmation : [alphanumeric]
+}
+}
+                        </pre>
+                                <b> Example: </b>
+                                <pre>
+{
+u : {
+email : "john@smith.com",
+name : "John",
+current_password : "apassw0rd"
+password : "anewpassw0rd",
+password_confirmation : "anewpassw0rd"
+}
+}
+                        </pre>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Success Response
+                            </th>
+                            <td>
+                                <b>Code:</b> 200 <br>
+                                <b>Content:</b><br> <code> { <br>
+                                message: "Success" <br>
+                                }</code><br>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Error Response
+                            </th>
+                            <td>
+                                <b>Code:</b> 500 Internal Server Error <br>
+                                <b>Content:</b> <code> {message: "message"}</code><br>
+                                <br>
+                                <b>Code:</b> 401 Unauthorized <br>
+                                <b>Content:</b> <code> {message: "message"}</code>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Sample Call
+                            </th>
+                            <td>
+                        <pre>
+$.ajax({
+    method: 'POST',
+    url: '/auth/authenticate',
+    dataType: 'json',
+    success: function(response){
+        //all good, do whatever, or nothing.
+    },
+    error: function(response){
+        //user was not authenticated, redirect?
+        window.location.href = "/auth";
+    },
+    beforeSend: function(xhr){
+        //Use JWT stored in localStorage for authentication.
+    xhr.setRequestHeader('Authorization', window.localStorage.getItem('APItoken'));
+    }
+});
+                        </pre>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Notes
+                            </th>
+                            <td>
+                                <span class="caption">Remeber that all secure calls requires key "Authorization" in header with value "JWT ...token..."</span> <br>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingMyFiles">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapseMyFiles" aria-expanded="false" aria-controls="collapseMyFiles">
+                        My Files
+                        <i class="fa fa-plus-circle pull-right"></i>
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseMyFiles" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingMyFiles">
+                <div class="panel-body">
+                    <!-- HERE IS WHERE TABLES GO -->
+                    <table class="table table-striped">
+                        <tr>
+                            <th valign="top"> Title </th>
+                            <td>
+                                <b>Get your files. </b>
+                                <p>
+                                    <i>
+                                        <ul>
+                                            <li> Retrieve an array with the paths to your own files. </li>
+                                        </ul>
+                                    </i>
+                                </p>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                URL
+                            </th>
+                            <td>
+                                <b><code>/API/myFiles</code></b>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Method
+                            </th>
+                            <td>
+                                <b><code>GET</code> </b>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Success Response
+                            </th>
+                            <td>
+                                <b>Code:</b> 200 <br>
+                                <b>Content example:</b> <code> [ <br>
+                                "Path1", <br>
+                                "Path2", <br>
+                                "Path3"<br>
+                                ]</code><br>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Error Response
+                            </th>
+                            <td>
+                                <b>Code:</b> 500 Internal Server Error <br>
+                                <b>Content:</b> <code> {message: "message"}</code><br>
+                                <br>
+                                <b>Code:</b> 401 Unauthorized <br>
+                                <b>Content:</b> <code> {message: "message"}</code>
+                                <br>
+                                <b>Code:</b> 400 Bad request <br>
+                                <b>Content:</b> <code> {message: "message"}</code>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Sample Call
+                            </th>
+                            <td>
+                                <pre>
+$.ajax({
+    method: 'GET',
+    url: '/API/MyFiles',
+    dataType: 'json',
+    success: function(response) {
+        //do stuff
+    },
+    error: function(response) {
+       //do stuff
+    },
+    beforeSend: function(xhr) {
+        //we use JWT stored in localStorage for authentication.
+    xhr.setRequestHeader('Authorization', window.localStorage.getItem('APItoken'));
+    }
+});
+
+                        </pre>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Notes
+                            </th>
+                            <td>
+                                <span class="caption">Remeber that all secure calls requires key "Authorization" in header with value "JWT ...token...".</span> <br>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingUploads">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapseUploads" aria-expanded="false" aria-controls="collapseUploads">
+                        Upload
+                        <i class="fa fa-plus-circle pull-right"></i>
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseUploads" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingUploads">
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <tr>
+                            <th valign="top"> Title </th>
+                            <td>
+                                <b>Uploads data to server </b>
+                                <p>
+                                    <i>
+                                        <ul>
+                                            <li> Your targeted files will be uploaded to your dir on the server and their paths added to <br><code>My Files()</code>. </li>
+                                        </ul>
+                                    </i>
+                                </p>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                URL
+                            </th>
+                            <td>
+                                <b><code>/api/upload</code> </b>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Method
+                            </th>
+                            <td>
+                                <b><code>POST</code></b>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Success Response
+                            </th>
+                            <td>
+                                <b>Code:</b> 200 <br>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Error Response
+                            </th>
+                            <td>
+                                <b>Code:</b> 400 Bad Request <br>
+                                <b>Content:</b> <code> {message: "message"}</code><br>
+                                <br>
+                                <b>Code:</b> 401 Unauthorized <br>
+                                <b>Content:</b> <code> {message: "message"}</code>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Sample Call
+                            </th>
+                            <td>
+                        <pre>
+ $.ajax({
+    url: '/api/upload',
+    type: 'POST',
+    data: formData,
+    processData: false,
+    contentType: false,
+    success: function(data){
+        //do stuff
+    },
+    error: function(response) {
+        //do stuff
+    },
+    beforeSend: function(xhr) {
+        //we use JWT stored in localStorage for authentication.
+    xhr.setRequestHeader('Authorization', window.localStorage.getItem('APItoken'));
+    }
+});
+                        </pre>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Notes
+                            </th>
+                            <td>
+                                <span class="caption">Remeber that all secure calls requires key "Authorization" in header with value "JWT ...token..."</span> <br>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingAddHouse">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapseAddHouse" aria-expanded="false" aria-controls="collapseAddHouse">
+                        Add House
+                        <i class="fa fa-plus-circle pull-right"></i>
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseAddHouse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingAddHouse">
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <tr>
+                            <th valign="top"> Title </th>
+                            <td>
+                                <b>Add's a house. </b>
+                                <p>
+                                    <i>
+                                        <ul>
+                                            <li> Add's a house connected to your user, LIMIT 1. </li>
+                                        </ul>
+                                    </i>
+                                </p>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                URL
+                            </th>
+                            <td>
+                                <b><code>/auth/addHouse</code> </b>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Method
+                            </th>
+                            <td>
+                                <b><code>POST</code></b>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Success Response
+                            </th>
+                            <td>
+                                <b>Code:</b> 200 <br>
+                                <b>Content:</b><br> <code> { <br>
+                                name: "UserName"+"\'s House" <br>
+                                owner: "userObject._id" <br>
+                                }</code><br>
+                                <b>Example:</b><br> <code> { <br>
+                                name: "Christopher's House" <br>
+                                owner: "1234abcd" <br>
+                                }</code><br>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Error Response
+                            </th>
+                            <td>
+                                <b>Code:</b> 500 Internal Server Error <br>
+                                <b>Content:</b> <code> {message: "message"}</code><br>
+                                <br>
+                                <b>Code:</b> 401 Unauthorized <br>
+                                <b>Content:</b> <code> {message: "message"}</code><br>
+                                <b>Code:</b> 400 Bad Request <br>
+                                <b>Content:</b> <code> {message: "message"}</code><br>
+                                <br>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Sample Call
+                            </th>
+                            <td>
+                        <pre>
+$.ajax({
+    method: 'POST',
+    url: '/auth/addHouse',
+    dataType: 'json',
+    success: function(response){
+        //do stuff
+    },
+    error: function(response){
+        //do stuff
+    },
+    beforeSend: function(xhr){
+        //Use JWT stored in localStorage for authentication.
+    xhr.setRequestHeader('Authorization', window.localStorage.getItem('APItoken'));
+    }
+});
+                        </pre>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Notes
+                            </th>
+                            <td>
+                                <span class="caption">Remeber that all secure calls requires key "Authorization" in header with value "JWT ...token..."</span> <br>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="headingOne">
                 <h4 class="panel-title">
                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapseMyHouse" aria-expanded="false" aria-controls="collapseMyHouse">
@@ -583,118 +1058,10 @@ beforeSend: function(xhr) {
         </div>
 
         <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingAuthenticate">
-                <h4 class="panel-title">
-                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapseAuthenticate" aria-expanded="false" aria-controls="collapseAuthenticate">
-                        Authenticate
-                        <i class="fa fa-plus-circle pull-right"></i>
-                    </a>
-                </h4>
-            </div>
-            <div id="collapseAuthenticate" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                <div class="panel-body">
-                    <table class="table table-striped">
-                        <tr>
-                            <th valign="top"> Title </th>
-                            <td>
-                                <b>Authenticate your token. </b>
-                                <p>
-                                    <i>
-                                        <ul>
-                                            <li> Tries to authenticate using your Json Web Token. </li>
-                                        </ul>
-                                    </i>
-                                </p>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th valign="top">
-                                URL
-                            </th>
-                            <td>
-                                <b><code>/auth/authenticate</code> </b>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th valign="top">
-                                Method
-                            </th>
-                            <td>
-                                <b><code>POST</code></b>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th valign="top">
-                                Success Response
-                            </th>
-                            <td>
-                                <b>Code:</b> 200 <br>
-                                <b>Content:</b><br> <code> { <br>
-                                message: "Success" <br>
-                                }</code><br>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th valign="top">
-                                Error Response
-                            </th>
-                            <td>
-                                <b>Code:</b> 500 Internal Server Error <br>
-                                <b>Content:</b> <code> {message: "message"}</code><br>
-                                <br>
-                                <b>Code:</b> 401 Unauthorized <br>
-                                <b>Content:</b> <code> {message: "message"}</code>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th valign="top">
-                                Sample Call
-                            </th>
-                            <td>
-                        <pre>
-$.ajax({
-    method: 'POST',
-    url: '/auth/authenticate',
-    dataType: 'json',
-    success: function(response){
-        //all good, do whatever, or nothing.
-    },
-    error: function(response){
-        //user was not authenticated, redirect?
-        window.location.href = "/auth";
-    },
-    beforeSend: function(xhr){
-        //Use JWT stored in localStorage for authentication.
-    xhr.setRequestHeader('Authorization', window.localStorage.getItem('APItoken'));
-    }
-});
-                        </pre>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th valign="top">
-                                Notes
-                            </th>
-                            <td>
-                                <span class="caption">Remeber that all secure calls requires key "Authorization" in header with value "JWT ...token..."</span> <br>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="headingAddRoom">
                 <h4 class="panel-title">
                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapseAddRoom" aria-expanded="false" aria-controls="collapseAddRoom">
-                        Add room
+                        Add Room
                         <i class="fa fa-plus-circle pull-right"></i>
                     </a>
                 </h4>
@@ -724,7 +1091,7 @@ $.ajax({
                                 Method
                             </th>
                             <td>
-                               <b><code>POST</code> </b>
+                                <b><code>POST</code> </b>
                             </td>
                         </tr>
 
@@ -816,7 +1183,672 @@ $.ajax({
                                 <span class="caption"> A new house is created if you have not got one server-side.</span>
                             </td>
                         </tr>
-                    </table></div>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingAddItem">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapseAddItem" aria-expanded="false" aria-controls="collapseAddItem">
+                        Add Item
+                        <i class="fa fa-plus-circle pull-right"></i>
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseAddItem" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingAddItem">
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <tr>
+                            <th valign="top"> Title </th>
+                            <td>
+                                <b>Add an item to your room. </b>
+                                <p>
+                                    <i>
+                                        <ul>
+                                            <li> Puts an item in a room (rooms are connected to house). </li>
+                                        </ul>
+                                    </i>
+                                </p>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                URL
+                            </th>
+                            <td>
+                                <b><code>/auth/addItem</code> </b>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Method
+                            </th>
+                            <td>
+                                <b><code>POST</code></b>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Success Response
+                            </th>
+                            <td>
+                                <b>Code:</b> 200 <br>
+                                <b>Content:</b><br> <code> { <br>
+                                name: "newLampName", <br>
+                                power: "newLampPower", <br>
+                                location: "newLampLocation", <br>
+                                description: "newLampDescription" <br>
+                                }</code><br>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Error Response
+                            </th>
+                            <td>
+                                <b>Code:</b> 500 Internal Server Error <br>
+                                <b>Content:</b> <code> {message: "message"}</code><br>
+                                <br>
+                                <b>Code:</b> 400 Bad request <br>
+                                <b>Content:</b> <code> {message: "message"}</code> <br>
+                                <br>
+                                <b>Code:</b> 401 Unauthorized <br>
+                                <b>Content:</b> <code> {message: "message"}</code>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Sample Call
+                            </th>
+                            <td>
+                        <pre>
+$.ajax({
+    method: 'POST',
+    url: '/API/addItem',
+    dataType: 'json',
+    data: {
+        newLampName: newLampName,
+        newLampDescription: newLampDescription,
+        newLampLocation: newLampLocation,
+        newLampPower: newLampPower
+    },
+    success: function(response) {
+        //do stuff
+    },
+    error: function(response) {
+        //do stuff
+    },
+    beforeSend: function(xhr) {
+        //Use JWT stored in localStorage for authentication.
+    xhr.setRequestHeader('Authorization', window.localStorage.getItem('APItoken'));
+    }
+});
+                        </pre>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Notes
+                            </th>
+                            <td>
+                                <span class="caption">Remeber that all secure calls requires key "Authorization" in header with value "JWT ...token..."</span> <br>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingMyItems">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapseMyItems" aria-expanded="false" aria-controls="collapseMyItems">
+                        My Items
+                        <i class="fa fa-plus-circle pull-right"></i>
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseMyItems" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingMyItems">
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <tr>
+                            <th valign="top"> Title </th>
+                            <td>
+                                <b>Get your items. </b>
+                                <p>
+                                    <i>
+                                        <ul>
+                                            <li> Retrieve an array with the paths to your own rooms, <br> which in turn holds all ur items. </li>
+                                        </ul>
+                                    </i>
+                                </p>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                URL
+                            </th>
+                            <td>
+                                <b><code>/API/myFiles</code></b>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Method
+                            </th>
+                            <td>
+                                <b><code>GET</code> </b>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Success Response
+                            </th>
+                            <td>
+                                <b>Code:</b> 200 <br>
+                                <b>Content example:</b> <code> [ <br>
+                                {Location1}, <br>
+                                {Location2}, <br>
+                                {Location3}<br>
+                                ]</code><br>
+
+                                <b> example:</b> <code><br>
+                                {Location1}.items[0]
+                                </code><br>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Error Response
+                            </th>
+                            <td>
+                                <b>Code:</b> 500 Internal Server Error <br>
+                                <b>Content:</b> <code> {message: "message"}</code><br>
+                                <br>
+                                <b>Code:</b> 401 Unauthorized <br>
+                                <b>Content:</b> <code> {message: "message"}</code>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Sample Call
+                            </th>
+                            <td>
+                                <pre>
+$.ajax({
+method: 'GET',
+url: '/API/myitems',
+dataType: 'json',
+success: function(response) {
+    //will loop through every room
+    response.locationArray.forEach(function(element) {
+        //will loop through every item
+        element.items.forEach(function(item) {
+            //will print the name of the item
+            console.log(item.name);
+        }
+    }
+},
+error: function(response) {
+    //do stuff
+},
+beforeSend: function(xhr) {
+     //we use JWT stored in localStorage for authentication.
+xhr.setRequestHeader('Authorization', window.localStorage.getItem('APItoken'));
+}
+});
+
+                        </pre>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Notes
+                            </th>
+                            <td>
+                                <span class="caption">Remeber that all secure calls requires key "Authorization" in header with value "JWT ...token...".</span> <br>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingGetItem">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapseGetItem" aria-expanded="false" aria-controls="collapseGetItem">
+                        Get Item
+                        <i class="fa fa-plus-circle pull-right"></i>
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseGetItem" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingGetItem">
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <tr>
+                            <th valign="top"> Title </th>
+                            <td>
+                                <b>Get a single item.</b>
+                                <p>
+                                    <i>
+                                        <ul>
+                                            <li> Retrieve a single item by ID. </li>
+                                        </ul>
+                                    </i>
+                                </p>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                URL
+                            </th>
+                            <td>
+                                <b><code>/API/getItem</code></b>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Method
+                            </th>
+                            <td>
+                                <b><code>POST</code> </b>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Data Params
+                            </th>
+                            <td>
+                                <b>Required:</b> <br>
+                                <pre>
+{
+itemId: [String]
+}
+                        </pre>
+                                <b> Example: </b>
+                                <pre>
+{
+itemId: "584582a678cd030e58b3bbc4"
+}
+                        </pre>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Success Response
+                            </th>
+                            <td>
+                                <b>Code:</b> 200 <br>
+                                <b>Content:</b><br> <code> { <br>
+                                "_id": "584582a678cd030e58b3bbc4", <br>
+                                "name": "Kitchen",<br>
+                                "power": 15,<br>
+                                "location": "584582ca78cd030e58b3bbcb",<br>
+                                "description": "main kitchen",<br>
+                                "powerOn": false<br>
+                                ],<br>
+                                "__v": 0<br>
+                                } <br>
+                                }</code><br>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Error Response
+                            </th>
+                            <td>
+                                <b>Code:</b> 500 Internal Server Error <br>
+                                <b>Content:</b> <code> {message: "message"}</code><br>
+                                <br>
+                                <b>Code:</b> 401 Unauthorized <br>
+                                <b>Content:</b> <code> {message: "message"}</code><br>
+                                <br>
+                                <b>Code:</b> 400 Bad request <br>
+                                <b>Content:</b> <code> {message: "message"}</code>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Sample Call
+                            </th>
+                            <td>
+                                <pre>
+$.ajax({
+method: 'GET',
+url: '/API/getItem',
+dataType: 'json',
+data: {itemId: itemId},
+success: function(response) {
+    //do stuff with the item
+    //e.g response.name
+},
+error: function(response) {
+    //do stuff
+},
+beforeSend: function(xhr) {
+     //we use JWT stored in localStorage for authentication.
+xhr.setRequestHeader('Authorization', window.localStorage.getItem('APItoken'));
+}
+});
+
+                        </pre>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Notes
+                            </th>
+                            <td>
+                                <span class="caption">Remeber that all secure calls requires key "Authorization" in header with value "JWT ...token...".</span> <br>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingToggleItem">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapseToggleItem" aria-expanded="false" aria-controls="collapseToggleItem">
+                        Toggle Item
+                        <i class="fa fa-plus-circle pull-right"></i>
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseToggleItem" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingToggleItem">
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <tr>
+                            <th valign="top"> Title </th>
+                            <td>
+                                <b>Toggles item.</b>
+                                <p>
+                                    <i>
+                                        <ul>
+                                            <li> Toggles the items boolean "powerOn". </li>
+                                        </ul>
+                                    </i>
+                                </p>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                URL
+                            </th>
+                            <td>
+                                <b><code>/API/toggleItem</code></b>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Method
+                            </th>
+                            <td>
+                                <b><code>POST</code> </b>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Data Params
+                            </th>
+                            <td>
+                                <b>Required:</b> <br>
+                                <pre>
+{
+itemId: [String]
+}
+                        </pre>
+                                <b> Example: </b>
+                                <pre>
+{
+itemId: "584582a678cd030e58b3bbc4"
+}
+                        </pre>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Success Response
+                            </th>
+                            <td>
+                                <b>Code:</b> 200 <br>
+                                <b>Content:</b><br> <code> { <br>
+                                "_id": "584582a678cd030e58b3bbc4", <br>
+                                "name": "Kitchen",<br>
+                                "power": 15,<br>
+                                "location": "584582ca78cd030e58b3bbcb",<br>
+                                "description": "main kitchen",<br>
+                                "powerOn": true<br>
+                                ],<br>
+                                "__v": 0<br>
+                                } <br>
+                                }</code><br>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Error Response
+                            </th>
+                            <td>
+                                <b>Code:</b> 500 Internal Server Error <br>
+                                <b>Content:</b> <code> {message: "message"}</code><br>
+                                <br>
+                                <b>Code:</b> 401 Unauthorized <br>
+                                <b>Content:</b> <code> {message: "message"}</code><br>
+                                <br>
+                                <b>Code:</b> 400 Bad request <br>
+                                <b>Content:</b> <code> {message: "message"}</code>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Sample Call
+                            </th>
+                            <td>
+                                <pre>
+$.ajax({
+method: 'GET',
+url: '/API/toggleItem',
+dataType: 'json',
+data: {itemId: itemId},
+success: function(response) {
+    //do stuff
+},
+error: function(response) {
+    //do stuff
+},
+beforeSend: function(xhr) {
+     //we use JWT stored in localStorage for authentication.
+xhr.setRequestHeader('Authorization', window.localStorage.getItem('APItoken'));
+}
+});
+
+                        </pre>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Notes
+                            </th>
+                            <td>
+                                <span class="caption">Remeber that all secure calls requires key "Authorization" in header with value "JWT ...token...".</span> <br>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingDeleteItem">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapseDeleteItem" aria-expanded="false" aria-controls="collapseDeleteItem">
+                        Delete Item
+                        <i class="fa fa-plus-circle pull-right"></i>
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseDeleteItem" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingDeleteItem">
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <tr>
+                            <th valign="top"> Title </th>
+                            <td>
+                                <b>Delete Item</b>
+                                <p>
+                                    <i>
+                                        <ul>
+                                            <li> Deletes item by ID. </li>
+                                        </ul>
+                                    </i>
+                                </p>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                URL
+                            </th>
+                            <td>
+                                <b><code>/API/deleteItem</code></b>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Method
+                            </th>
+                            <td>
+                                <b><code>POST</code> </b>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Data Params
+                            </th>
+                            <td>
+                                <b>Required:</b> <br>
+                                <pre>
+{
+itemId: [String]
+}
+                        </pre>
+                                <b> Example: </b>
+                                <pre>
+{
+itemId: "584582a678cd030e58b3bbc4"
+}
+                        </pre>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Success Response
+                            </th>
+                            <td>
+                                <b>Code:</b> 200 <br>
+                                <b>Content:</b><br> <code> { <br>
+                                "_id": "584582a678cd030e58b3bbc4", <br>
+                                "name": "Kitchen",<br>
+                                "power": 15,<br>
+                                "location": "584582ca78cd030e58b3bbcb",<br>
+                                "description": "main kitchen",<br>
+                                "powerOn": true<br>
+                                ],<br>
+                                "__v": 0<br>
+                                } <br>
+                                }</code><br>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Error Response
+                            </th>
+                            <td>
+                                <b>Code:</b> 500 Internal Server Error <br>
+                                <b>Content:</b> <code> {message: "message"}</code><br>
+                                <br>
+                                <b>Code:</b> 401 Unauthorized <br>
+                                <b>Content:</b> <code> {message: "message"}</code><br>
+                                <br>
+                                <b>Code:</b> 400 Bad request <br>
+                                <b>Content:</b> <code> {message: "message"}</code>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Sample Call
+                            </th>
+                            <td>
+                                <pre>
+$.ajax({
+method: 'GET',
+url: '/API/deleteItem',
+dataType: 'json',
+data: {itemId: itemId},
+success: function(response) {
+    //do stuff
+},
+error: function(response) {
+    //do stuff
+},
+beforeSend: function(xhr) {
+     //we use JWT stored in localStorage for authentication.
+xhr.setRequestHeader('Authorization', window.localStorage.getItem('APItoken'));
+}
+});
+
+                        </pre>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Notes
+                            </th>
+                            <td>
+                                <span class="caption">Remeber that all secure calls requires key "Authorization" in header with value "JWT ...token...".</span> <br>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
         

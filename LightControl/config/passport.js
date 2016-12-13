@@ -4,7 +4,7 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var JwtStrategy = require('passport-jwt').Strategy;
 var ExtractJwt = require('passport-jwt').ExtractJwt;
 
-var User = require('../models/user');
+var User = require('../models/user').User;
 
 var configAuth = require('./auth');
 var configJWT = require('./JWT');
