@@ -15,9 +15,9 @@ NodeJs
  * Download & Install NodeJs
  * Download & install MongoDB
  * Create a executable file (bat) with the following code:
- `mkdir C:\lightControlDB
+ ```mkdir C:\lightControlDB
   start cmd.exe /k mongod --dbpath C:\lightControlDB --port 27800
-  start cmd.exe /k node app.js`
+  start cmd.exe /k node app.js```
  * Download the repository, open a terminal window in the project folder.
  * run `npm install`
  * Run the executable bat file you created earlier.
