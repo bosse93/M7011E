@@ -6,16 +6,20 @@ and you will be able to control your lamps wherever you are through the website.
 be able to see your energy consumption in realtime. 
 
 
-Backend: Node.js
-Database: MongoDB
+MongoDB
+ExpressJS
+NodeJs
 
 
 1. How to (windows):
- * download the repository, open a terminal window in the project folder.
- * install nodeJS
- * run npm install
- * install express (npm express -g)
- * install handlebars (npm install --save express-handlebars)
+ * Download & Install NodeJs
+ * Download & install MongoDB
+ * Create a executable file (bat) with the following code:
+ `mkdir C:\lightControlDB
+  start cmd.exe /k mongod --dbpath C:\lightControlDB --port 27800
+  start cmd.exe /k node app.js`
+ * Download the repository, open a terminal window in the project folder.
+ * run `npm install`
+ * Run the executable bat file you created earlier.
 
-2. How to (unix):
-  * work to be done here.
+
