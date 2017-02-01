@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var User = require('../models/user').User;
 
 var HouseHoldSchema = new Schema({
     name: {type: String, required: true},
@@ -10,16 +11,19 @@ var HouseHoldSchema = new Schema({
 
 var LocationSchema = new Schema({
     name: {type: String, required: true},
-    house: {type: Schema.Types.ObjectId, ref: 'HouseHold', required: true},
-    items: [{type: Schema.Types.ObjectId, ref: 'Item', required: false}]
+    house: {type: Schema.Types.ObjectId, ref: 'House', required: true},
+    items: [{type: Schema.Types.ObjectId, ref: 'Item', required: false}],
+    owner: {type: Schema.Types.ObjectId, ref: User, required: true}
 });
 
 var ItemSchema = new Schema({
     name: {type: String, required: true},
+    owner: {type: Schema.Types.ObjectId, ref: User, required: true},
     power: {type: Number, required: true},
     location: {type: Schema.Types.ObjectId, ref: 'Location', required: true},
     description: {type: String, required: false},
-    powerOn: {type: Boolean, default: false}
+    powerOn: {type: Boolean, default: false},
+    filePath: {type: String, default: "/images/defaultImage.jpg"}
 });
 
 

@@ -1,4 +1,5 @@
 $('.upload-btn').on('click', function (){
+    $('#progressBar').show();
     $('#upload-input').click();
     $('.progress-bar').text('0%');
     $('.progress-bar').width('0%');
@@ -6,7 +7,10 @@ $('.upload-btn').on('click', function (){
 
 $('#upload-input').on('change', function(){
 
+    $('.progress-bar').show();
     var files = $(this).get(0).files;
+    var url = window.location.pathname;
+    var itemId = url.substring(url.lastIndexOf('/') + 1);
 
     if (files.length > 0){
         // create a FormData object which will be sent as the data payload in the
@@ -22,13 +26,16 @@ $('#upload-input').on('change', function(){
         }
 
         $.ajax({
-            url: '/api/upload',
+            url: '/api/uploadItemFile/'+itemId,
             type: 'POST',
-            data: formData,
+            data: formData, 
             processData: false,
             contentType: false,
-            success: function(data){
-                console.log('upload successful!\n' + data);
+            success: function(response){
+                /*console.log(response);
+                $("#image1").src = response;
+                */
+                location.reload();
             },
             error: function(response) {
                 console.log('error'+response);

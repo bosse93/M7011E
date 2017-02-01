@@ -23,10 +23,23 @@
     <div class="page-header">
        <h1>API documentation for LightControl</h1>
     </div>
+    <div class="row">
+        <div class="col-md-4">
+            <a class="btn btn-info" onClick="goBack()"><i class="fa fa-arrow-circle-left"></i> Back </a> <br>
+        </div>
+        <div class="col-md-8">
+            <ul>
+                <li>To access the secure calls in the API you need a Json Web Token in the 'Authorization' header field.</li>
+                <li>A JWT is provided by the sign in & sign up functions.</li>
+                <li>To add an item you need a room.</li>
+                <li>To toggle, remove or alter an item you need an item.</li>
+            </ul>
+        </div>
+    </div>
     <div class="page-header">
-        <a class="btn btn-info" onClick="goBack()"><i class="fa fa-arrow-circle-left"></i> Back </a> <br>
         <h1>API calls</h1>
     </div>
+
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 
         <!-- API TEMPLATE
@@ -282,9 +295,6 @@ password : "myS3cr3tP4ssw0rd"
                                 Error Response
                             </th>
                             <td>
-                                <b>Code:</b> 500 Internal Server Error <br>
-                                <b>Content:</b> <code> {message: "message"}</code><br>
-                                <br>
                                 <b>Code:</b> 401 Unauthorized <br>
                                 <b>Content:</b> <code> {message: "message"}</code>
                             </td>
@@ -412,9 +422,6 @@ password : "myS3cr3tP4ssw0rd"
                                 Error Response
                             </th>
                             <td>
-                                <b>Code:</b> 500 Internal Server Error <br>
-                                <b>Content:</b> <code> {message: "message"}</code><br>
-                                <br>
                                 <b>Code:</b> 401 Unauthorized <br>
                                 <b>Content:</b> <code> {message: "message"}</code>
                         </tr>
@@ -560,9 +567,6 @@ password_confirmation : "anewpassw0rd"
                                 Error Response
                             </th>
                             <td>
-                                <b>Code:</b> 500 Internal Server Error <br>
-                                <b>Content:</b> <code> {message: "message"}</code><br>
-                                <br>
                                 <b>Code:</b> 401 Unauthorized <br>
                                 <b>Content:</b> <code> {message: "message"}</code>
                             </td>
@@ -671,9 +675,6 @@ $.ajax({
                                 Error Response
                             </th>
                             <td>
-                                <b>Code:</b> 500 Internal Server Error <br>
-                                <b>Content:</b> <code> {message: "message"}</code><br>
-                                <br>
                                 <b>Code:</b> 401 Unauthorized <br>
                                 <b>Content:</b> <code> {message: "message"}</code>
                                 <br>
@@ -893,9 +894,6 @@ $.ajax({
                                 Error Response
                             </th>
                             <td>
-                                <b>Code:</b> 500 Internal Server Error <br>
-                                <b>Content:</b> <code> {message: "message"}</code><br>
-                                <br>
                                 <b>Code:</b> 401 Unauthorized <br>
                                 <b>Content:</b> <code> {message: "message"}</code><br>
                                 <b>Code:</b> 400 Bad Request <br>
@@ -1009,9 +1007,6 @@ $.ajax({
                             </th>
                             <td>
                                 <b>Code:</b> 400 Bad Request <br>
-                                <b>Content:</b> <code> {message: "message"}</code><br>
-                                <br>
-                                <b>Code:</b> 500 Internal Server Error <br>
                                 <b>Content:</b> <code> {message: "message"}</code><br>
                                 <br>
                                 <b>Code:</b> 401 Unauthorized <br>
@@ -1138,9 +1133,6 @@ newRoomName : "kitchen"
                                 Error Response
                             </th>
                             <td>
-                                <b>Code:</b> 500 Internal Server Error <br>
-                                <b>Content:</b> <code> {message: "message"}</code><br>
-                                <br>
                                 <b>Code:</b> 401 Unauthorized <br>
                                 <b>Content:</b> <code> {message: "message"}</code>
                             </td>
@@ -1252,9 +1244,6 @@ $.ajax({
                                 Error Response
                             </th>
                             <td>
-                                <b>Code:</b> 500 Internal Server Error <br>
-                                <b>Content:</b> <code> {message: "message"}</code><br>
-                                <br>
                                 <b>Code:</b> 400 Bad request <br>
                                 <b>Content:</b> <code> {message: "message"}</code> <br>
                                 <br>
@@ -1374,9 +1363,6 @@ $.ajax({
                                 Error Response
                             </th>
                             <td>
-                                <b>Code:</b> 500 Internal Server Error <br>
-                                <b>Content:</b> <code> {message: "message"}</code><br>
-                                <br>
                                 <b>Code:</b> 401 Unauthorized <br>
                                 <b>Content:</b> <code> {message: "message"}</code>
                             </td>
@@ -1518,9 +1504,6 @@ itemId: "584582a678cd030e58b3bbc4"
                                 Error Response
                             </th>
                             <td>
-                                <b>Code:</b> 500 Internal Server Error <br>
-                                <b>Content:</b> <code> {message: "message"}</code><br>
-                                <br>
                                 <b>Code:</b> 401 Unauthorized <br>
                                 <b>Content:</b> <code> {message: "message"}</code><br>
                                 <br>
@@ -1660,9 +1643,6 @@ itemId: "584582a678cd030e58b3bbc4"
                                 Error Response
                             </th>
                             <td>
-                                <b>Code:</b> 500 Internal Server Error <br>
-                                <b>Content:</b> <code> {message: "message"}</code><br>
-                                <br>
                                 <b>Code:</b> 401 Unauthorized <br>
                                 <b>Content:</b> <code> {message: "message"}</code><br>
                                 <br>
@@ -1801,9 +1781,6 @@ itemId: "584582a678cd030e58b3bbc4"
                                 Error Response
                             </th>
                             <td>
-                                <b>Code:</b> 500 Internal Server Error <br>
-                                <b>Content:</b> <code> {message: "message"}</code><br>
-                                <br>
                                 <b>Code:</b> 401 Unauthorized <br>
                                 <b>Content:</b> <code> {message: "message"}</code><br>
                                 <br>
@@ -1823,6 +1800,655 @@ method: 'GET',
 url: '/API/deleteItem',
 dataType: 'json',
 data: {itemId: itemId},
+success: function(response) {
+    //do stuff
+},
+error: function(response) {
+    //do stuff
+},
+beforeSend: function(xhr) {
+     //we use JWT stored in localStorage for authentication.
+xhr.setRequestHeader('Authorization', window.localStorage.getItem('APItoken'));
+}
+});
+
+                        </pre>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Notes
+                            </th>
+                            <td>
+                                <span class="caption">Remeber that all secure calls requires key "Authorization" in header with value "JWT ...token...".</span> <br>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingDeleteItem">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapseedithomeunitinfo" aria-expanded="false" aria-controls="collapseDeleteItem">
+                        Edit home unit information
+                        <i class="fa fa-plus-circle pull-right"></i>
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseedithomeunitinfo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingDeleteItem">
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <tr>
+                            <th valign="top"> Title </th>
+                            <td>
+                                <b>Edit Home Unit</b>
+                                <p>
+                                    <i>
+                                        <ul>
+                                            <li> Edits the connect information to the home unit. </li>
+                                        </ul>
+                                    </i>
+                                </p>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                URL
+                            </th>
+                            <td>
+                                <b><code>/API/editHomeUnitInfo</code></b>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Method
+                            </th>
+                            <td>
+                                <b><code>POST</code> </b>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Data Params
+                            </th>
+                            <td>
+                                <b>Required:</b> <br>
+                                <pre>
+{
+ip: [String],
+port: [string]
+}
+                        </pre>
+                                <b> Example: </b>
+                                <pre>
+{
+ip: "0.0.0.0",
+port: "1234"
+}
+                        </pre>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Success Response
+                            </th>
+                            <td>
+                                <b>Code:</b> 200 <br>
+                                <b>Content:</b><br> <code> { <br>
+                                "_id": "584582a678cd030e58b3bbc4", <br>
+                                "user": "userID",<br>
+                                "ip": "0.0.0.0",<br>
+                                "port": "1234",<br>
+                                ],<br>
+                                "__v": 0<br>
+                                } <br>
+                                }</code><br>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Error Response
+                            </th>
+                            <td>
+                                <b>Code:</b> 401 Unauthorized <br>
+                                <b>Content:</b> <code> {message: "message"}</code><br>
+                                <br>
+                                <b>Code:</b> 400 Bad request <br>
+                                <b>Content:</b> <code> {message: "message"}</code>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Sample Call
+                            </th>
+                            <td>
+                                <pre>
+$.ajax({
+method: 'GET',
+url: '/API/editHomeUnitInfo',
+dataType: 'json',
+data: {IP: IP, port: port},
+success: function(response) {
+    //do stuff
+},
+error: function(response) {
+    //do stuff
+},
+beforeSend: function(xhr) {
+     //we use JWT stored in localStorage for authentication.
+xhr.setRequestHeader('Authorization', window.localStorage.getItem('APItoken'));
+}
+});
+
+                        </pre>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Notes
+                            </th>
+                            <td>
+                                <span class="caption">Remeber that all secure calls requires key "Authorization" in header with value "JWT ...token...".</span> <br>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingDeleteItem">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapseGetHomeUnitInfo" aria-expanded="false" aria-controls="collapseDeleteItem">
+                        Get Home Unit Info
+                        <i class="fa fa-plus-circle pull-right"></i>
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseGetHomeUnitInfo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingDeleteItem">
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <tr>
+                            <th valign="top"> Title </th>
+                            <td>
+                                <b>Get Home Unit Info</b>
+                                <p>
+                                    <i>
+                                        <ul>
+                                            <li> Retrieves the stored home unit information. </li>
+                                        </ul>
+                                    </i>
+                                </p>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                URL
+                            </th>
+                            <td>
+                                <b><code>/API/getHomeUnitInfo</code></b>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Method
+                            </th>
+                            <td>
+                                <b><code>GET</code> </b>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Success Response
+                            </th>
+                            <td>
+                                <b>Code:</b> 200 <br>
+                                <b>Content:</b><br> <code> { <br>
+                                "_id": "584582a678cd030e58b3bbc4", <br>
+                                "user": "584582a123cd030e58b3bbc4",<br>
+                                "ip": "0.0.0.0",<br>
+                                "port": "1234",<br>
+                                ],<br>
+                                "__v": 0<br>
+                                } <br>
+                                }</code><br>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Error Response
+                            </th>
+                            <td>
+                                <b>Code:</b> 401 Unauthorized <br>
+                                <b>Content:</b> <code> {message: "message"}</code><br>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Sample Call
+                            </th>
+                            <td>
+                                <pre>
+$.ajax({
+method: 'GET',
+url: '/API/getHomeUnitInfo',
+dataType: 'json',
+success: function(response) {
+    //do stuff
+},
+error: function(response) {
+    //do stuff
+},
+beforeSend: function(xhr) {
+     //we use JWT stored in localStorage for authentication.
+xhr.setRequestHeader('Authorization', window.localStorage.getItem('APItoken'));
+}
+});
+
+                        </pre>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Notes
+                            </th>
+                            <td>
+                                <span class="caption">Remeber that all secure calls requires key "Authorization" in header with value "JWT ...token...".</span> <br>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingDeleteItem">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapseUploadItemFile" aria-expanded="false" aria-controls="collapseDeleteItem">
+                        Upload Item File
+                        <i class="fa fa-plus-circle pull-right"></i>
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseUploadItemFile" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingDeleteItem">
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <tr>
+                            <th valign="top"> Title </th>
+                            <td>
+                                <b>Upload Item File</b>
+                                <p>
+                                    <i>
+                                        <ul>
+                                            <li> Uploads a file to a item. </li>
+                                        </ul>
+                                    </i>
+                                </p>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                URL
+                            </th>
+                            <td>
+                                <b><code>/API/uploadItemFile/*</code></b>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Method
+                            </th>
+                            <td>
+                                <b><code>POST</code> </b>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Success Response
+                            </th>
+                            <td>
+                                <b>Code:</b> 201 <br>
+                                <b>Content:</b><br> <code> { <br>
+                                "_id": "584582a678cd030e58b3bbc4", <br>
+                                "filePath": "/filePath",<br>
+                                ],<br>
+                                "__v": 0<br>
+                                } <br>
+                                }</code><br>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Error Response
+                            </th>
+                            <td>
+                                <b>Code:</b> 401 Unauthorized <br>
+                                <b>Content:</b> <code> {message: "message"}</code><br>
+                                <br>
+                                <b>Code:</b> 400 Bad request <br>
+                                <b>Content:</b> <code> {message: "message"}</code>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Sample Call
+                            </th>
+                            <td>
+                                <pre>
+$.ajax({
+method: 'POST',
+url: '/API/uploadItemFile/itemID',
+dataType: 'json',
+success: function(response) {
+    //do stuff
+},
+error: function(response) {
+    //do stuff
+},
+beforeSend: function(xhr) {
+     //we use JWT stored in localStorage for authentication.
+xhr.setRequestHeader('Authorization', window.localStorage.getItem('APItoken'));
+}
+});
+
+                        </pre>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Notes
+                            </th>
+                            <td>
+                                <span class="caption">Remeber that all secure calls requires key "Authorization" in header with value "JWT ...token...".</span> <br>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingDeleteItem">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapseGetLocation" aria-expanded="false" aria-controls="collapseDeleteItem">
+                        Get Location
+                        <i class="fa fa-plus-circle pull-right"></i>
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseGetLocation" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingDeleteItem">
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <tr>
+                            <th valign="top"> Title </th>
+                            <td>
+                                <b>Get Location</b>
+                                <p>
+                                    <i>
+                                        <ul>
+                                            <li> Retrieves the location of an item. </li>
+                                        </ul>
+                                    </i>
+                                </p>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                URL
+                            </th>
+                            <td>
+                                <b><code>/API/getLocation</code></b>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Method
+                            </th>
+                            <td>
+                                <b><code>POST</code> </b>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Data Params
+                            </th>
+                            <td>
+                                <b>Required:</b> <br>
+                                <pre>
+{
+locationID: [String]
+}
+                        </pre>
+                                <b> Example: </b>
+                                <pre>
+{
+locationID: "584582a678cd030e58b3bbc4"
+}
+                        </pre>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Success Response
+                            </th>
+                            <td>
+                                <b>Code:</b> 200 <br>
+                                <b>Content:</b><br> <code> { <br>
+                                "_id": "584582a678cd030e58b3bbc4", <br>
+                                "name": "Room",<br>
+                                "house": "58924da53457f71118a530c7",<br>
+                                "owner": "584582ca78cd030e58b3bbcb",<br>
+                                "items": [{object}],<br>
+                                ],<br>
+                                "__v": 0<br>
+                                } <br>
+                                }</code><br>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Error Response
+                            </th>
+                            <td>
+                                <b>Code:</b> 401 Unauthorized <br>
+                                <b>Content:</b> <code> {message: "message"}</code><br>
+                                <br>
+                                <b>Code:</b> 400 Bad request <br>
+                                <b>Content:</b> <code> {message: "message"}</code>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Sample Call
+                            </th>
+                            <td>
+                                <pre>
+$.ajax({
+method: 'POST',
+url: '/API/getLocation',
+dataType: 'json',
+data: {locationID: location},
+success: function(response) {
+    //do stuff
+},
+error: function(response) {
+    //do stuff
+},
+beforeSend: function(xhr) {
+     //we use JWT stored in localStorage for authentication.
+xhr.setRequestHeader('Authorization', window.localStorage.getItem('APItoken'));
+}
+});
+
+                        </pre>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Notes
+                            </th>
+                            <td>
+                                <span class="caption">Remeber that all secure calls requires key "Authorization" in header with value "JWT ...token...".</span> <br>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingDeleteItem">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapseEditItem" aria-expanded="false" aria-controls="collapseDeleteItem">
+                        Edit Item
+                        <i class="fa fa-plus-circle pull-right"></i>
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseEditItem" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingDeleteItem">
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <tr>
+                            <th valign="top"> Title </th>
+                            <td>
+                                <b>Edit Item</b>
+                                <p>
+                                    <i>
+                                        <ul>
+                                            <li> Edits an specific item. </li>
+                                        </ul>
+                                    </i>
+                                </p>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                URL
+                            </th>
+                            <td>
+                                <b><code>/API/editItem</code></b>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Method
+                            </th>
+                            <td>
+                                <b><code>POST</code> </b>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Data Params
+                            </th>
+                            <td>
+                                <b>Required:</b> <br>
+                                <pre>
+{
+itemId: [String],
+itemPower: [String],
+itemName: [String],
+itemDescription: [String]
+}
+                        </pre>
+                                <b> Example: </b>
+                                <pre>
+{
+itemId: "584582a678cd030e58b3bbc4",
+itemPower: "35",
+itemName: "newItemName",
+itemDescription: "new desc"
+}
+                        </pre>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Success Response
+                            </th>
+                            <td>
+                                <b>Code:</b> 200 <br>
+                                <b>Content:</b><br> <code> { <br>
+                                "_id": "584582a678cd030e58b3bbc4", <br>
+                                "name": "kitchen lamp",<br>
+                                "power": 35,<br>
+                                "location": "584582ca78cd030e58b3bbcb",<br>
+                                "description": "main kitchen",<br>
+                                "powerOn": true<br>
+                                ],<br>
+                                "__v": 0<br>
+                                } <br>
+                                }</code><br>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Error Response
+                            </th>
+                            <td>
+                                <b>Code:</b> 401 Unauthorized <br>
+                                <b>Content:</b> <code> {message: "message"}</code><br>
+                                <br>
+                                <b>Code:</b> 400 Bad request <br>
+                                <b>Content:</b> <code> {message: "message"}</code>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th valign="top">
+                                Sample Call
+                            </th>
+                            <td>
+                                <pre>
+$.ajax({
+method: 'GET',
+url: '/API/editItem',
+dataType: 'json',
+data: {
+    itemId: "584582a678cd030e58b3bbc4",
+    itemPower: "35",
+    itemName: "newItemName",
+    itemDescription: "new desc"
+},
 success: function(response) {
     //do stuff
 },

@@ -8,7 +8,7 @@ module.exports = function(router, passport){
         res.render('user/signup.hbs', {title: 'Sign up', layout: 'loginLayout'});
     });
 
-    router.get('/upload', function(req, res) {
+    router.get('/upload*', function(req, res) {
         res.render('upload/upload.hbs', {title: 'upload'});
     });
 
@@ -16,13 +16,13 @@ module.exports = function(router, passport){
     router.get('/profile', function(req, res){
         res.render('user/profile.hbs', {title: 'Profile'});
     });
-    
+
     router.get('/house', function(req, res) {
-       res.render('houseHold/view-house.hbs', {title: 'House'}); 
+        res.render('houseHold/view-house.hbs', {title: 'House'});
     });
-    
-    router.get('/editHouse', function(req, res) {
-        res.render('houseHold/edit-house.hbs', {title: 'Edit House'});
+
+    router.get('/editLamp*', function(req, res) {
+        res.render('houseHold/edit-lamp.hbs', {title: 'Edit Lamp'});
     });
 
     router.get('/API', function (req, res) {

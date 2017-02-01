@@ -11,15 +11,20 @@ ExpressJS
 NodeJs
 
 
-1. How to (windows):
+1. How to run (windows):
  * Download & Install NodeJs
  * Download & install MongoDB
- * Create a executable file (bat) with the following code:
- ```mkdir C:\lightControlDB
-  start cmd.exe /k mongod --dbpath C:\lightControlDB --port 27800
-  start cmd.exe /k node app.js```
- * Download the repository, open a terminal window in the project folder.
- * run `npm install`
- * Run the executable bat file you created earlier.
+ * Download the lightControl repository.
+ * Open a terminal window in the project folder and Run `npm install`
+ * Run the executable file downloaded in github repository.
 
 
+2. How to run (Unix)
+ * Download & Install NodeJs
+ * Download & install MongoDB
+ * Download the lightControl repository.
+ * Open a terminal window in the project folder and Run `npm install`
+ Note: For unix systems there is currently no executable file - you will have to start in manually by:
+ * Create a folder for the database.
+ * Start mongod with the path to the folder you created in the step before as well as setting the port to listen to 27800.
+ * Run app.js

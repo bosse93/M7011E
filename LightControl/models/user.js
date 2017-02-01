@@ -22,7 +22,7 @@ var userSchema = new Schema({
     fileSchema: {
         type: Schema.Types.ObjectId,
         ref: 'File'
-   }
+    }
 });
 
 var fileSchema = new Schema({
@@ -32,6 +32,16 @@ var fileSchema = new Schema({
         ref: 'User',
         required: true
     }
+});
+
+var homeConnect = new Schema({
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
+    ip: {type: String, default: "0.0.0.0"},
+    port: {type: String, default: "0000"}
 });
 
 
@@ -49,7 +59,8 @@ userSchema.methods.validPassword = function(password) {
 
 var userSchema = mongoose.model('User', userSchema);
 var fileSchema = mongoose.model('File', fileSchema);
+var homeConnect = mongoose.model('homeUnit', homeConnect);
 
-var Models = {User: userSchema, File: fileSchema};
+var Models = {User: userSchema, File: fileSchema, homeUnit: homeConnect};
 
 module.exports = Models;
