@@ -21,7 +21,7 @@ var expressJWT = require('express-jwt');
 var app = express();
 
 // connects to lightControlDB, if there isnt one its automaticly created
-mongoose.connect('localhost:2222/lightControlDB');
+mongoose.connect('localhost:2222');
 
 //CONFIGS
 require('./config/passport')(passport);
